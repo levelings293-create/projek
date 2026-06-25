@@ -1,0 +1,308 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Nadya 🍀</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffd1ff);
+}
+
+/* OPENING */
+#opening{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    background:linear-gradient(135deg,#1e1e2f,#3a3a5a);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999;
+}
+
+.tree{
+    font-size:180px;
+    animation:tumbuh 3s ease forwards;
+}
+
+@keyframes tumbuh{
+    0%{
+        transform:scale(0);
+        opacity:0;
+    }
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.loading-text{
+    color:white;
+    margin-top:20px;
+    font-size:24px;
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:.4;
+    }
+}
+
+/* BUNGA */
+.flower{
+    position:absolute;
+    top:-50px;
+    font-size:25px;
+    animation:fall linear infinite;
+    pointer-events:none;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-10vh) rotate(0deg);
+    }
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+/* HATI */
+.heart{
+    position:absolute;
+    animation:naik 5s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes naik{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+
+/* MAIN */
+#main{
+    display:none;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+.card{
+    position:relative;
+    z-index:1000;
+    background:white;
+    width:90%;
+    max-width:700px;
+    padding:40px;
+    border-radius:30px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#ff4d6d;
+}
+
+.nama{
+    font-size:32px;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.foto{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    border:8px solid #ff4d6d;
+    cursor:pointer;
+}
+
+.foto:hover{
+    transform:scale(1.05);
+}
+
+p{
+    margin-top:20px;
+    line-height:1.8;
+}
+
+button{
+    margin-top:20px;
+    padding:14px 30px;
+    border:none;
+    border-radius:50px;
+    background:#ff4d6d;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#e63956;
+}
+
+#pesan{
+    margin-top:20px;
+    color:#ff4d6d;
+    font-size:20px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div id="opening">
+    <div class="tree">🌳✨</div>
+    <div class="loading-text">MEMBUKA KEJUTAN...</div>
+</div>
+
+<div id="main">
+    <div class="card">
+
+        <h1>🎉 HAPPY BIRTHDAY 🎂</h1>
+
+        <div class="nama">Nadyaaaa pakai Y 🍀</div>
+
+        <img src="inikucing.jpg"
+             class="foto"
+             onclick="surprise()">
+
+        <p>
+            Selamat ulang tahun Nadyaaaa 🍀
+            Sehat selalu , bahagia,
+            sukses, banyak rezeki, dan semua impianmu tercapai.
+        </p>
+
+        <button onclick="ucapan()">
+            🎁 Klik Hadiah
+        </button>
+
+        <div id="pesan"></div>
+
+    </div>
+</div>
+
+<script>
+
+// BUNGA
+for(let i=0;i<25;i++){
+    let flower=document.createElement("div");
+    flower.className="flower";
+    flower.innerHTML="🌸";
+    flower.style.left=Math.random()*100+"%";
+    flower.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(flower);
+}
+
+// HATI
+setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"%";
+    heart.style.fontSize=(20+Math.random()*20)+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },5000);
+},400);
+
+// OPENING
+setTimeout(()=>{
+    document.getElementById("opening").style.display="none";
+    document.getElementById("main").style.display="flex";
+},3000);
+
+// FOTO DIKLIK
+function surprise(){
+    alert("🎂 Selamat Ulang Tahun Nadyaaaa 🍀\n\nAduhhh sory Ft ne nggak enek ERORRRR TEROSSSSSSS ");
+}
+
+// TOMBOL HADIAH
+function ucapan(){
+    document.getElementById("pesan").innerHTML =
+    "🎁 Pokoe sukses terus kakkkkk, nih tak kasih sendal 🩴 btw pojok bawah musik<br><br>Semoga semua doa dan harapan terbaik menyertaimu hari ini dan seterusnya. Tetap semangat dan jangan lupa bahagia!🎉🥳";
+}
+</script> 
+
+```html
+<!-- Tombol Musik -->
+<button id="musicBtn" onclick="toggleMusic()">
+    🎵
+</button>
+
+<!-- Audio -->
+<audio id="bgMusic" loop>
+    <source src="Akeboshi - Wind.mp3" type="audio/mpeg">
+</audio>
+
+<style>
+#musicBtn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:#ff4d6d;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+    z-index:9999;
+    box-shadow:0 4px 15px rgba(0,0,0,0.3);
+}
+
+#musicBtn:hover{
+    transform:scale(1.1);
+}
+</style>
+
+<script>
+let music = document.getElementById("bgMusic");
+let playing = false;
+
+function toggleMusic(){
+    if(!playing){
+        music.play();
+        playing = true;
+        document.getElementById("musicBtn").innerHTML = "⏸️";
+    }else{
+        music.pause();
+        playing = false;
+        document.getElementById("musicBtn").innerHTML = "🎵";
+    }
+}
+</script>
+```
+
+}
+</script>
+```
+
+</body>
+</html>
+
+```
